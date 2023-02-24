@@ -159,7 +159,7 @@ cart_params = {'max_depth': range(1, 20),
                "min_samples_split": range(2, 30)}
 
 rf_params = {"max_depth": [8, 15, None],
-             "max_features": [5, 7, "auto"],
+             "max_features": [5, 7, "sqrt"],
              "min_samples_split": [15, 20],
              "n_estimators": [200, 300]}
 
@@ -210,3 +210,22 @@ def voting_classifier(best_models, X, y):
     return voting_clf
 
 
+
+
+################################################
+# Pipeline Main Function
+################################################
+
+
+def main():
+    df = pd.read_csv("datasets/diabetes.csv")
+    X, y = diabetes_data_prep(df)
+    base_models(X, y)
+    best_models = hyperparameter_optimization(X, y)
+    voting_clf = voting_classifier(best_models, X, y)
+    joblib.dump(voting_clf, "voting_clf.pkl")
+    return voting_clf
+
+if __name__ == "__main__":
+    print("İşlem başladı")
+    main()
