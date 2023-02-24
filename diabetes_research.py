@@ -330,7 +330,7 @@ cart_params = {'max_depth': range(1, 20),
                "min_samples_split": range(2, 30)}
 
 rf_params = {"max_depth": [8, 15, None],
-             "max_features": [5, 7, "auto"],
+             "max_features": [5, 7, "sqrt"],
              "min_samples_split": [15, 20],
              "n_estimators": [200, 300]}
 
